@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task3</title>
+    <link rel="stylesheet" href="task.css">
+    <script defer src="task3.js"></script>
+</head>
+
+<body>
+    <div class="box stat">
+        <table class="table">
+            <tr>
+                <td>Резерв</td>
+                <td>
+                    12 945 535.9882
+                    <span class="coin">BIP</span>
+                </td>
+            </tr>
+            <tr>
+                <td>Эмиссия</td>
+                <td>
+                    7 054 815.6895
+                    <span class="coin">TIME</span>
+                </td>
+            </tr>
+            <tr>
+                <td>Делегировано</td>
+                <td>
+                    6 753 383.5763
+                    <span class="coin">TIME</span>
+                </td>
+            </tr>
+            <tr>
+                <td>Начальный резерв</td>
+                <td>
+                    1 000 000.0000
+                    <span class="coin">BIP</span>
+                </td>
+            </tr>
+            <tr>
+                <td>Начальная эмиссия</td>
+                <td>
+                    3 030 303.0300
+                    <span class="coin">TIME</span>
+                </td>
+            </tr>
+            <tr>
+                <td>Начальная цена</td>
+                <td>
+                    1.0000
+                    <span class="coin">BIP</span>
+                </td>
+            </tr>
+            <tr>
+                <td>Создана</td>
+                <td>
+                    2019-09-03 23:03:58
+                </td>
+            </tr>
+            <tr>
+                <td>Категории</td>
+                <td><select id="categories" multiple="multiple">
+                        <option value="1" selected>Games</option>
+                        <option value="2">Social</option>
+                        <option value="3" selected>Payment</option>
+                        <option value="4">Travel</option>
+                        <option value="5" selected>Mobile</option>
+                        <option value="6">Invest</option>
+                    </select></td>
+            </tr>
+            <tr>
+                <td>Владелец</td>
+                <td><span><a href="#Mxcdbdcf4ce903a9ae2d3b97e8f8b982d1f01cd820" class="">Mxcdb...cd820</a></span></td>
+            </tr>
+            <!---->
+        </table>
+    </div>
+    <div class="divider-box">
+        <button class="btn-send">SEND 1</button>
+    </div>
+    <div class="box form">
+        <form action="#">
+            <div class="row">
+                <label class="label">
+                    Reserve:
+                    <input type="text" name="Reserve" id="Reserve">
+                </label>
+
+            </div>
+            <div class="row">
+                <label class="label">
+                    Emmission:
+                    <input type="text" name="Emmission">
+                </label>
+            </div>
+            <div class="row">
+                <label class="label">
+                    Delegated:
+                    <input type="text" name="Delegated">
+                </label>
+            </div>
+            <div class="row">
+                <label class="label">
+                    Initial reserve:
+                    <input type="text" name="Initial_reserve" id="InitialReserve">
+                </label>
+            </div>
+            <div class="row">
+                <label class="label">
+                    Initial emission:
+                    <input type="text" name="Initial_emission">
+                </label>
+            </div>
+            <div class="row">
+                <label class="label">
+                    Initial price:
+                    <input type="text" name="Initial_price" id="InitialPrice">
+                </label>
+            </div>
+            <div class="row">
+                <label class="label">
+                    Created At Date/Time:
+                    <input type="text" placeholder="mm/dd/yyyy" name="Created_At_Date" id="CreatedAtDate"
+                        style="width:80px;">/<input type="text" placeholder="hh:ss" name="Created_At_Time"
+                        id="CreatedAtTime" style="width:40px;">
+                </label>
+            </div>
+            <div class="row">
+                <label class="label">
+                    Categories ID`s:
+                    <input type="hidden" id="CategoriesString" name="Categories_string" />
+                    <select name="Categories[]" id="categories" multiple>
+                        <option value="games">Games</option>
+                        <option value="social">Social</option>
+                        <option value="3">Payment</option>
+                        <option value="business_payment">Business Payment</option>
+                        <option value="24">Travel</option>
+                        <option value="15">Mobile</option>
+                        <option value="63">Invest</option>
+                        <option value="medicine">Medicine</option>
+                    </select>
+                </label>
+            </div>
+            <div class="row">
+                <label class="label">
+                    Payer Address
+                    <input type="text" name="Wallet_payer" placeholder="Mx.....">
+                </label>
+            </div>
+        </form>
+    </div>
+    <div class="divider-box">
+        <button class="btn-send">SEND 2</button>
+    </div>
+
+    <div class="box result">
+        <textarea name="ResultJSON" id="ResultJSON" style="width:100%; height:100%;resize:none; overflow: visible;"
+            readonly placeholder="{
+...
+}"></textarea>
+    </div>
+</body>
+
+</html>
