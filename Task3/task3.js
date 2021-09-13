@@ -1,48 +1,60 @@
+// take button access by classname
 buttons = document.getElementsByClassName("btn-send");
-categories = document.getElementById("categories");
 
+// first button access with onlick funtion
 buttons[0].onclick = function () {
   let table = document.getElementsByClassName("table")[0];
   //   console.log(table);
+
+  // store data in variables and replace data and remove space and character
   let reserve = table.rows[0]
     .getElementsByTagName("td")[1]
-    .innerText.replace(/[^0-9.,]/g, "");
+    .innerText.replace(/[^0-9.]/g, "");
   let emmission = table.rows[1]
     .getElementsByTagName("td")[1]
-    .innerText.replace(/[^0-9.,]/g, "");
+    .innerText.replace(/[^0-9.]/g, "");
   let delegated = table.rows[2]
     .getElementsByTagName("td")[1]
-    .innerText.replace(/[^0-9.,]/g, "");
+    .innerText.replace(/[^0-9.]/g, "");
   let initialReserve = table.rows[3]
     .getElementsByTagName("td")[1]
-    .innerText.replace(/[^0-9.,]/g, "");
+    .innerText.replace(/[^0-9.]/g, "");
   let initialEmission = table.rows[4]
     .getElementsByTagName("td")[1]
-    .innerText.replace(/[^0-9.,]/g, "");
+    .innerText.replace(/[^0-9.]/g, "");
   let initialPrice = table.rows[5]
     .getElementsByTagName("td")[1]
-    .innerText.replace(/[^0-9.,]/g, "");
+    .innerText.replace(/[^0-9.]/g, "");
+  let walletPayer = table.rows[8].getElementsByTagName("td")[1].innerText;
 
-  // take date value and spilt it and join by /
+  // take date value and spilt it - and make it reverse and then join by /
   let date = table.rows[6].getElementsByTagName("td")[1].innerText.split(" ");
   let createdAtDate = date[0].split("-").reverse().join("/");
   let time = date[1].split(":");
-  let createdAtTime = time[0] + ":" + time[2];
+  let createdAtTime = time[0] + ":" + time[2]; // time[0] for hour and time[2] for seconds and time[1] for min
 
-  //   take selected categories from left side and store it
+  //   take selected categories from left side and store it in array by using filter and map method
   let selectedCategories = Array.from(
     document.getElementById("categories").options
-  ).filter((option) => option.selected);
+  )
+    .filter((option) => option.selected)
+    .map((i) => i.innerText);
 
-  //   take right side categories by using name
+  // console.log(selectedCategories);
+
+  //   take right side categories by using name so we have to use querySelector
   let categories = document.querySelector('[name="Categories[]"]');
-  categories.options.length = 0;
 
-  for (let selCat of selectedCategories) {
-    categories.options.add(createOption(selCat.value, selCat.innerText));
+  // let printcat = Array.from(categories.options).map((i) => i.innerText);
+  // console.log(printcat);
+
+  for (var i = 0; i < categories.options.length; i++) {
+    // console.log(option);
+    option = categories.options[i];
+    if (selectedCategories.indexOf(option.innerText) != -1) {
+      option.selected = true;
+    }
   }
-  //   console.log(categories.options.length);
-  let walletPayer = table.rows[8].getElementsByTagName("td")[1].innerText;
 
   //   hidden categories
   let hcategories = Array.from(
@@ -50,7 +62,9 @@ buttons[0].onclick = function () {
   ).map((i) => i.value);
   console.log(hcategories);
 
-  // document.getElementsByClassName("row").style.innerText = "center";
+  // document.getElementById("Reserve").style.textAlign = "center";
+
+  // set values to right side input values from left
   document.getElementById("Reserve").value = reserve;
   document.querySelector('[name="Emmission"]').value = emmission;
   document.querySelector('[name="Delegated"]').value = delegated;
@@ -63,6 +77,7 @@ buttons[0].onclick = function () {
   document.querySelector('[name="Wallet_payer"]').value = walletPayer;
 };
 
+// second button with same id access with onlick funtion
 buttons[1].onclick = function () {
   // take value from input and store it
   let reserve = parseFloat(document.getElementById("Reserve").value);
@@ -82,7 +97,8 @@ buttons[1].onclick = function () {
   let walletPayer = document.querySelector('[name="Wallet_payer"]').value;
   let categories = Array.from(
     document.querySelector('[name="Categories[]"]').selectedOptions
-  ).map((i) => i.value);
+  ).map((i) => i.innerText);
+  // set the all value into object
   let data = {
     reserve: reserve,
     emission: emission,
@@ -95,16 +111,7 @@ buttons[1].onclick = function () {
     categories: categories,
     wallet_payer: walletPayer,
   };
-  //   document.getElementsByClassName("result").style.innerText = "center";
+
   let result = document.getElementById("ResultJSON");
-  //   result.style = "/n";
-  result.value = JSON.stringify(data);
+  result.value = JSON.stringify(data, null, 2); // print data into json format using JSON.stringify
 };
-
-function createOption(value, label) {
-  let option = document.createElement("option");
-  option.setAttribute("value", value);
-  option.innerHTML = label;
-
-  return option;
-}
